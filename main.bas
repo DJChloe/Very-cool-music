@@ -1,0 +1,36 @@
+10 REM Simple music player:
+20 REM - Music files are loaded in $4600
+30 REM - Register buffer in $3800
+40 REM - Player binary code in $3500
+50 REM Oric 1 compatible version
+60 REM
+70 HIMEM #3000 
+80 TEXT:PAPER4:INK6:CLS
+100 PRINT "Loading music player"
+110 LOAD"MYMPLAYER.BIN"
+120 CLS:GOSUB 1000:PRINT:PRINT"Number:Select music    Space:Quit"
+130 GET A$
+140 A$="B":GOTO 200
+150 GOTO 120
+160 REM
+170 REM Loading music
+180 REM
+200 PRINT "Loading "+A$
+210 LOAD"MUSIC"+A$+".BIN"
+215 PRINT "Currently playing music "+A$
+220 CALL#3500
+230 PRINT"Press a key to continue"
+240  GET A$
+250 CALL#3503
+270 GOTO 120
+1000 REM
+1001 REM MENU
+1002 REM
+1010 PRINT"   WELCOME TO THE ORIC "
+1020 PRINT"ARCADE MUSIC GREATEST HITS"
+1030 PRINT
+1040 PRINT"PRESS A KEY"
+
+
+1500 RETURN
+
